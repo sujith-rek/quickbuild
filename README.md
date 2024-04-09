@@ -50,3 +50,19 @@ npm run dev
 
 - **Fetching the user in the client side** - You can fetch the user in the client side by using the `useSession` hook from NextAuth. See `/pages/meow.tsx` for an example.
 
+
+Notes:
+1. If you change the database type in `prisma/schema.prisma`, you need to run the following command to generate the Prisma client:
+```
+npx prisma generate
+```
+
+2. If you change the Prisma schema, you need to run the following command to update the database:
+```
+npx prisma db push
+```
+
+3. To run prisma studio, run the following command:
+```
+npx prisma studio
+```
