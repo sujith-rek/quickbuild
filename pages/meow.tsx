@@ -12,14 +12,13 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 }
 
 function meow({ user }) {
-    const { data: session, status } = useSession()
 
+    const { data: session, status } = useSession()
+    
     return (
         <div>
             {status === "loading" && <div>Loading...</div>}
             {status === "authenticated" && <div>Meow, {session.user.email}</div>}
-            {user && <div>Meow, {user.email}</div>}
-            {status === "unauthenticated" && <div>Meow, stranger</div>}
         </div>
     )
 }

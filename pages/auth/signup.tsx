@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Input, Button, FormControl, FormLabel, Container } from "@chakra-ui/react";
 import { signUp } from "@/operations/auth.fetch";
+import { useRouter } from "next/router";
 
 function signup() {
 
@@ -9,13 +10,20 @@ function signup() {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const router = useRouter()
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault()
         if (password === confirmPassword) {
             const response = await signUp({ email, password, name, phone })
-            console.log(response)
-            alert("User created successfully")
+            if (response.status === 201) {
+                alert("User created successfully")
+                router.push("/auth/signin")
+            } else {
+                alert("Error creating user");
+                console.log(response)
+            }
+
         } else {
             alert("Passwords do not match")
         }

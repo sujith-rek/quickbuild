@@ -2,6 +2,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { fetchCredentials } from "@/services/users.services";
 import { compareSync } from "bcrypt";
 import type { NextAuthOptions } from "next-auth";
+import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
+
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -36,6 +39,7 @@ export const authOptions: NextAuthOptions = {
                 token.id = user.id;
                 token.name = user.name;
                 token.email = user.email;
+                token.phone = user.phone;
             }
             return token;
         },
@@ -45,4 +49,15 @@ export const authOptions: NextAuthOptions = {
         },
     },
     secret: process.env.NEXTAUTH_SECRET,
+};
+
+
+export const withSessionAPI = (handler: any) => async (req: NextApiRequest, res: NextApiResponse) => {
+    const session = await getServerSession(req, res, authOptions);
+
+    if (!session) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    return handler(req, res, session.user);
 };
