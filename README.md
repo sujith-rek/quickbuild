@@ -42,3 +42,11 @@ npm run dev
 - NodeMailer: Email sending capability
 - Tailwind CSS: Utility-first CSS framework
 
+## Docs
+
+- **Protected API Route** - `/pages/api/user/fetch.ts` is a protected route that requires authentication. If the user is not authenticated, they will be sent a 401 status code and unauthorized message. Also see `/lib/auth.ts` for the authentication logic.
+
+- **Checking User Session in ServerSideProps** - You can check if the user is authenticated in the `getServerSideProps` function of a page by using the `getSession` function from NextAuth. See `/pages/meow.tsx` for an example.
+
+- **Fetching the user in the client side** - You can fetch the user in the client side by using the `useSession` hook from NextAuth. See `/pages/meow.tsx` for an example.
+
