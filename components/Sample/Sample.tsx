@@ -1,3 +1,6 @@
+import { FaGithub } from "react-icons/fa";
+import { SiPrisma, SiChakraui } from "react-icons/si";
+import { Icon } from "@chakra-ui/react";
 import "./Sample.scss";
 
 function Sample() {
@@ -10,17 +13,18 @@ function Sample() {
                 Features included:
             </p>
             <ul>
-                <li>Prisma</li>
-                <li>Chakra UI</li>
+                <li><Icon as={SiPrisma} /> Prisma ORM</li>
+                <li><Icon as={SiChakraui} /> Chakra UI</li>
                 <li>NextAuth</li>
                 <li>SCSS</li>
                 <li>NodeMailer</li>
+                <li>React Icons</li>
             </ul>
             <br />
             <br />
-            <p>
-                Made with ❤️ by <a href="https://github.com/sujith-rek">Sujith</a>
-            </p>
+            <span>
+                Made with ❤️ by <a href="https://github.com/sujith-rek"><Icon as={FaGithub} /> Sujith</a>
+            </span>
         </div>
     );
 }
